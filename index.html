@@ -526,6 +526,13 @@
     gap: 20px;
   }
 
+  .grid-cards-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-cards-3 .card {
+    padding: 26px 26px;
+  }
+
   .card {
     border-radius: 12px;
     background: var(--card);
@@ -688,8 +695,14 @@
     color: var(--foreground);
   }
 
+  @media (max-width: 1040px) {
+    .grid-cards-3 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   @media (max-width: 760px) {
     .grid-cards,
+    .grid-cards-3,
     .plat-grid {
       grid-template-columns: 1fr;
     }
@@ -717,6 +730,7 @@
       canya
     </a>
     <div class="nav-links">
+      <a href="#features">Features</a>
       <a href="#specification">Specification</a>
       <a href="#downloads">Download</a>
       <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
@@ -741,15 +755,15 @@
       <p class="eyebrow rise" style="animation-delay:0ms">Local-first &middot; file-based &middot; no account</p>
       <h1 class="display rise" style="animation-delay:90ms">Still just a file on your disk.</h1>
       <p class="hero-sub rise" style="animation-delay:180ms">
-        Canya is a desktop app for sketching system diagrams &mdash;
-        architecture, flows, wiring &mdash; on a real Excalidraw canvas.
-        Sessions live in a reorderable folder tree and autosave straight to a
-        plain <code>.diagram-project</code> file. Nothing syncs, because
-        nothing has to.
+        Canya is a desktop app for system diagrams on a real Excalidraw
+        canvas, plus what a plain drawing tool forgets: sessions in folders,
+        technology icons, reusable blocks, properties and links, search,
+        tidy-up, export and presenting. It all autosaves to one
+        <code>.canya</code> file. Nothing syncs, because nothing has to.
       </p>
       <div class="hero-ctas rise" style="animation-delay:270ms">
         <a class="btn btn-accent btn-lg" href="#downloads">Download</a>
-        <a class="btn btn-quiet btn-lg" href="#specification">See what's inside &rarr;</a>
+        <a class="btn btn-quiet btn-lg" href="#features">See what's inside &rarr;</a>
       </div>
       <p class="hero-plats rise" style="animation-delay:340ms" id="detected-note">macOS &middot; Windows &middot; Linux &mdash; free, no account</p>
     </div>
@@ -768,8 +782,7 @@
               <span class="sb-count">3</span>
             </div>
             <div class="mock-newbtns">
-              <div class="mock-newbtn primary">+ New Session</div>
-              <div class="mock-newbtn secondary">&#128193; New Folder</div>
+              <div class="mock-newbtn primary">+ New &#9662;</div>
             </div>
             <div class="row folder">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -818,6 +831,65 @@
     </div>
   </section>
 
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Features</p>
+        <h2>A drawing tool that knows it's a system.</h2>
+      </div>
+      <div class="grid-cards grid-cards-3">
+        <div class="card">
+          <h3>Sessions, folders, tabs</h3>
+          <p>One project holds a whole system: sessions arranged in a folder tree, opened as tabs, each with its own notes. Start a session blank or from a saved block.</p>
+        </div>
+        <div class="card">
+          <h3>Technology icons</h3>
+          <p>300+ language, framework, database and cloud marks bundled in the app &mdash; Kong, Kubernetes, Spring, Kafka, Postgres &mdash; searchable from a panel inside the canvas.</p>
+        </div>
+        <div class="card">
+          <h3>Saved blocks</h3>
+          <p>Select a few shapes, press <code>Ctrl+Shift+B</code>, name them. Blocks are shared across every project; starter blocks get you going.</p>
+        </div>
+        <div class="card">
+          <h3>Properties, links, inventory</h3>
+          <p>Give any element a title, type, tags and a description, link it to another session or a URL, then see everything in one table &mdash; filter by tag, show on canvas, export CSV.</p>
+        </div>
+        <div class="card">
+          <h3>Looks from types</h3>
+          <p>Pick a type &mdash; Service, Data, External, Actor &mdash; and the shape takes a matching look on a soft, consistent palette. One undo step if you disagree.</p>
+        </div>
+        <div class="card">
+          <h3>Search &amp; command palette</h3>
+          <p><code>Ctrl+K</code> finds sessions, element text, tags and notes across the whole project, and runs every command without a menu hunt.</p>
+        </div>
+        <div class="card">
+          <h3>Tidy up</h3>
+          <p>Boxes connected right but placed badly? Arrange the selection or the whole session in layers along the arrows &mdash; groups move together, arrows are redrawn.</p>
+        </div>
+        <div class="card">
+          <h3>Mermaid import</h3>
+          <p>Paste a Mermaid flowchart, sequence or class diagram and insert it as editable shapes. Converted on your machine; nothing is sent anywhere.</p>
+        </div>
+        <div class="card">
+          <h3>Presentation mode</h3>
+          <p>Press <code>F5</code>: full screen, one step per session or per frame, arrow keys to move, session notes at hand, <code>Esc</code> puts everything back.</p>
+        </div>
+        <div class="card">
+          <h3>Export</h3>
+          <p>PNG at 1&times;&ndash;3&times;, SVG, PDF per session or the whole project, copy to clipboard &mdash; or one self-contained HTML page with every session that opens anywhere.</p>
+        </div>
+        <div class="card">
+          <h3>Bring your Excalidraw files</h3>
+          <p>Open or drop <code>.excalidraw</code> drawings and images; they become sessions and canvas elements. <code>.canya</code> files open with a double-click.</p>
+        </div>
+        <div class="card">
+          <h3>Safe with synced folders</h3>
+          <p>Keep projects in Dropbox, iCloud or a Git checkout. If the file changes outside Canya you're asked &mdash; reload or keep yours &mdash; never silently overwritten.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="specification">
     <div class="wrap">
       <div class="section-head">
@@ -827,7 +899,7 @@
       <div class="grid-cards">
         <div class="card">
           <h3>Plain, versioned file format</h3>
-          <p>Every project is one <code>.diagram-project</code> file &mdash; a versioned JSON envelope you can back up, diff, or move by hand. No hidden state directory, no database.</p>
+          <p>Every project is one <code>.canya</code> file &mdash; a versioned JSON envelope you can back up, diff, or move by hand. No hidden state directory, no database.</p>
         </div>
         <div class="card">
           <h3>A real canvas, not a clone</h3>
@@ -835,7 +907,7 @@
         </div>
         <div class="card">
           <h3>Sessions, folders, tabs</h3>
-          <p>Diagrams live in <em>sessions</em>, arranged into a reorderable folder tree and opened as tabs, so one project can hold a whole system's worth of related diagrams.</p>
+          <p>Diagrams live in <em>sessions</em>, arranged into a reorderable folder tree and opened as tabs. Element properties, links and notes live in the same file, next to the drawing.</p>
         </div>
         <div class="card">
           <h3>Autosave that can't half-write</h3>
@@ -843,7 +915,7 @@
         </div>
         <div class="card">
           <h3>No network, on principle</h3>
-          <p>Nothing calls out by default. The one exception is opt-in: pasting a public <code>https://</code> link to import a project. Nothing else in the app makes a request.</p>
+          <p>Nothing calls out while you work. Two narrow, documented exceptions: importing a project from a public <code>https://</code> link you paste, and checking this site for a signed update at startup (which you can turn off). Nothing else makes a request.</p>
         </div>
         <div class="card">
           <h3>Native on every desktop</h3>
@@ -851,7 +923,7 @@
         </div>
       </div>
       <div class="facts">
-        <span>plain <code>.diagram-project</code> file</span><span class="sep">&middot;</span>
+        <span>plain <code>.canya</code> file</span><span class="sep">&middot;</span>
         <span>atomic local writes</span><span class="sep">&middot;</span>
         <span>fully usable offline</span><span class="sep">&middot;</span>
         <span>no account required</span>
@@ -913,6 +985,7 @@
   <div class="wrap foot-inner">
     <span>&copy; 2026 Canya &mdash; local-first, no account required</span>
     <nav>
+      <a href="#features">Features</a>
       <a href="#specification">Specification</a>
       <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
       <a href="feedback.html">Feedback</a>
