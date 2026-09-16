@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Download Canya, a local-first desktop app for technical diagrams, for macOS, Windows, and Linux.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3.5' y='5.5' width='18' height='18' rx='4.5' transform='rotate(-10 3.5 5.5)' fill='%235eead4' opacity='.55'/%3E%3Crect x='10.5' y='9.5' width='18' height='18' rx='4.5' transform='rotate(-10 10.5 9.5)' fill='%2316897c'/%3E%3C/svg%3E">
-<title>Canya</title>
+<title>Credits · Canya</title>
 <script>
   (function () {
     try {
@@ -526,13 +526,6 @@
     gap: 20px;
   }
 
-  .grid-cards-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .grid-cards-3 .card {
-    padding: 26px 26px;
-  }
-
   .card {
     border-radius: 12px;
     background: var(--card);
@@ -695,14 +688,8 @@
     color: var(--foreground);
   }
 
-  @media (max-width: 1040px) {
-    .grid-cards-3 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
   @media (max-width: 760px) {
     .grid-cards,
-    .grid-cards-3,
     .plat-grid {
       grid-template-columns: 1fr;
     }
@@ -717,12 +704,24 @@
     }
   }
 </style>
+<style>
+  .feedback-wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 72px; }
+  .feedback-wrap h1 { font-size: 2rem; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .feedback-wrap .lead { color: var(--muted-foreground); margin: 0 0 32px; font-size: 1.05rem; }
+  .feedback-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-card); padding: 24px; margin-bottom: 20px; }
+  .feedback-card h2 { font-size: 1.05rem; margin: 0 0 6px; }
+  .feedback-card p { color: var(--muted-foreground); margin: 0 0 14px; }
+  .feedback-card ul { margin: 0; padding-left: 18px; color: var(--muted-foreground); line-height: 1.7; }
+  .feedback-card li + li { margin-top: 4px; }
+  .feedback-card .btn + .btn { margin-left: 8px; }
+  .feedback-note { font-size: 0.85rem; color: var(--faint); }
+</style>
 </head>
 <body>
 
 <header>
   <nav class="bar">
-    <a class="brand" href="#top">
+    <a class="brand" href="index.html#top">
       <svg width="16" height="16" viewBox="0 0 32 32">
         <rect x="3.5" y="5.5" width="18" height="18" rx="4.5" transform="rotate(-10 3.5 5.5)" fill="var(--primary)" opacity="0.5"/>
         <rect x="10.5" y="9.5" width="18" height="18" rx="4.5" transform="rotate(-10 10.5 9.5)" fill="var(--primary)"/>
@@ -730,9 +729,8 @@
       canya
     </a>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#specification">Specification</a>
-      <a href="#downloads">Download</a>
+      <a href="index.html#specification">Specification</a>
+      <a href="index.html#downloads">Download</a>
       <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
       <a href="feedback.html">Feedback</a>
     </div>
@@ -743,241 +741,58 @@
           <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
         </svg>
       </button>
-      <a class="btn btn-accent" href="#downloads">Download</a>
+      <a class="btn btn-accent" href="index.html#downloads">Download</a>
     </div>
   </nav>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="wrap hero-inner">
-      <p class="eyebrow rise" style="animation-delay:0ms">Local-first &middot; file-based &middot; no account</p>
-      <h1 class="display rise" style="animation-delay:90ms">Still just a file on your disk.</h1>
-      <p class="hero-sub rise" style="animation-delay:180ms">
-        Canya is a desktop app for system diagrams on a real Excalidraw
-        canvas, plus what a plain drawing tool forgets: sessions in folders,
-        technology icons, reusable blocks, properties and links, search,
-        tidy-up, export and presenting. It all autosaves to one
-        <code>.canya</code> file. Nothing syncs, because nothing has to.
-      </p>
-      <div class="hero-ctas rise" style="animation-delay:270ms">
-        <a class="btn btn-accent btn-lg" href="#downloads">Download</a>
-        <a class="btn btn-quiet btn-lg" href="#features">See what's inside &rarr;</a>
-      </div>
-      <p class="hero-plats rise" style="animation-delay:340ms" id="detected-note">macOS &middot; Windows &middot; Linux &mdash; free, no account</p>
+<main>
+  <section class="feedback-wrap">
+    <h1>Credits</h1>
+    <p class="lead">Canya bundles icons and block libraries made by other people. Everything below ships unmodified, under its owner's terms, and is used only to identify things in your diagrams.</p>
+
+    <div class="feedback-card">
+      <h2>Technology icons</h2>
+      <ul>
+        <li><a href="https://simpleicons.org" target="_blank" rel="noopener">Simple Icons</a> &mdash; CC0 1.0</li>
+        <li><a href="https://devicon.dev" target="_blank" rel="noopener">Devicon</a> &mdash; MIT</li>
+      </ul>
     </div>
 
-    <div class="mock-wrap rise" style="animation-delay:420ms">
-      <div class="mock">
-        <div class="mock-titlebar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <p class="fname">payment-architecture &mdash; canya</p>
-          <span style="width:44px"></span>
-        </div>
-        <div class="mock-body">
-          <div class="mock-sidebar">
-            <div class="sb-head">
-              <span class="sb-title">Sessions</span>
-              <span class="sb-count">3</span>
-            </div>
-            <div class="mock-newbtns">
-              <div class="mock-newbtn primary">+ New &#9662;</div>
-            </div>
-            <div class="row folder">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
-              Diagrams
-            </div>
-            <div class="row">
-              <span class="indent"></span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Checkout flow
-            </div>
-            <div class="row">
-              <span class="indent"></span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Auth flow
-            </div>
-            <div class="row active">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Payment gateway
-            </div>
-          </div>
-          <div class="mock-main">
-            <div class="mock-tabs">
-              <div class="mock-tab inactive">Auth flow</div>
-              <div class="mock-tab">Payment gateway</div>
-            </div>
-            <div class="mock-canvas">
-              <div class="sketch" style="left:6%;top:24%;width:19%;height:15%;transform:rotate(-0.6deg)">Client</div>
-              <div class="sketch" style="left:38%;top:16%;width:24%;height:15%;transform:rotate(0.4deg)">API Gateway</div>
-              <div class="sketch accent" style="left:38%;top:56%;width:24%;height:15%;transform:rotate(-0.3deg)">Payment Svc</div>
-              <div class="sketch" style="left:74%;top:36%;width:20%;height:15%;transform:rotate(0.5deg)">Ledger DB</div>
-              <svg class="sketch-arrow" style="left:0;top:0;width:100%;height:100%" viewBox="0 0 400 220" preserveAspectRatio="none">
-                <path d="M100 55 L152 47" marker-end="url(#ah)"></path>
-                <path d="M212 65 L212 120" marker-end="url(#ah)"></path>
-                <path d="M270 120 L296 92" marker-end="url(#ah)"></path>
-                <defs>
-                  <marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="var(--faint)"></path>
-                  </marker>
-                </defs>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="feedback-card">
+      <h2>Cloud provider icons</h2>
+      <ul>
+        <li><a href="https://aws.amazon.com/architecture/icons/" target="_blank" rel="noopener">AWS Architecture Icons</a> &mdash; &copy; Amazon Web Services, Inc. or its affiliates; used unmodified for creating architecture diagrams, per the AWS Architecture Icons terms.</li>
+        <li><a href="https://learn.microsoft.com/azure/architecture/icons/" target="_blank" rel="noopener">Azure Architecture Icons</a> &mdash; &copy; Microsoft Corporation; used unmodified in architectural diagrams, per Microsoft's icon terms.</li>
+        <li><a href="https://cloud.google.com/icons" target="_blank" rel="noopener">Google Cloud product icons</a> &mdash; &copy; Google LLC; used unmodified for diagrams and technical documentation.</li>
+      </ul>
     </div>
-  </section>
 
-  <section id="features">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Features</p>
-        <h2>A drawing tool that knows it's a system.</h2>
-      </div>
-      <div class="grid-cards grid-cards-3">
-        <div class="card">
-          <h3>Sessions, folders, tabs</h3>
-          <p>One project holds a whole system: sessions arranged in a folder tree, opened as tabs, each with its own notes. Start a session blank or from a saved block.</p>
-        </div>
-        <div class="card">
-          <h3>Technology icons</h3>
-          <p>300+ language, framework, database and cloud marks bundled in the app &mdash; Kong, Kubernetes, Spring, Kafka, Postgres &mdash; searchable from a panel inside the canvas.</p>
-        </div>
-        <div class="card">
-          <h3>Saved blocks</h3>
-          <p>Select a few shapes, press <code>Ctrl+Shift+B</code>, name them. Blocks are shared across every project; starter blocks get you going.</p>
-        </div>
-        <div class="card">
-          <h3>Properties, links, inventory</h3>
-          <p>Give any element a title, type, tags and a description, link it to another session or a URL, then see everything in one table &mdash; filter by tag, show on canvas, export CSV.</p>
-        </div>
-        <div class="card">
-          <h3>Looks from types</h3>
-          <p>Pick a type &mdash; Service, Data, External, Actor &mdash; and the shape takes a matching look on a soft, consistent palette. One undo step if you disagree.</p>
-        </div>
-        <div class="card">
-          <h3>Search &amp; command palette</h3>
-          <p><code>Ctrl+K</code> finds sessions, element text, tags and notes across the whole project, and runs every command without a menu hunt.</p>
-        </div>
-        <div class="card">
-          <h3>Tidy up</h3>
-          <p>Boxes connected right but placed badly? Arrange the selection or the whole session in layers along the arrows &mdash; groups move together, arrows are redrawn.</p>
-        </div>
-        <div class="card">
-          <h3>Mermaid import</h3>
-          <p>Paste a Mermaid flowchart, sequence or class diagram and insert it as editable shapes. Converted on your machine; nothing is sent anywhere.</p>
-        </div>
-        <div class="card">
-          <h3>Presentation mode</h3>
-          <p>Press <code>F5</code>: full screen, one step per session or per frame, arrow keys to move, session notes at hand, <code>Esc</code> puts everything back.</p>
-        </div>
-        <div class="card">
-          <h3>Export</h3>
-          <p>PNG at 1&times;&ndash;3&times;, SVG, PDF per session or the whole project, copy to clipboard &mdash; or one self-contained HTML page with every session that opens anywhere.</p>
-        </div>
-        <div class="card">
-          <h3>Bring your Excalidraw files</h3>
-          <p>Open or drop <code>.excalidraw</code> drawings and images; they become sessions and canvas elements. <code>.canya</code> files open with a double-click.</p>
-        </div>
-        <div class="card">
-          <h3>Safe with synced folders</h3>
-          <p>Keep projects in Dropbox, iCloud or a Git checkout. If the file changes outside Canya you're asked &mdash; reload or keep yours &mdash; never silently overwritten.</p>
-        </div>
-      </div>
+    <div class="feedback-card">
+      <h2>Built-in block libraries</h2>
+      <p>From the MIT-licensed <a href="https://github.com/excalidraw/excalidraw-libraries" target="_blank" rel="noopener">excalidraw-libraries</a> collection:</p>
+      <ul>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/finfin/flow-chart-symbols.excalidrawlib" target="_blank" rel="noopener">Flow Chart Symbols</a> — Fin (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/ferminrp/post-it.excalidrawlib" target="_blank" rel="noopener">Sticky Notes</a> — ferminrp (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/youritjang/stick-figures.excalidrawlib" target="_blank" rel="noopener">Stick Figures</a> — Youri Tjang (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/jgodoy/organization-chart.excalidrawlib" target="_blank" rel="noopener">Organization Chart</a> — Jorge Godoy (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/sketchingdev/banners.excalidrawlib" target="_blank" rel="noopener">Banners</a> — SketchingDev (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/g-script/charts.excalidrawlib" target="_blank" rel="noopener">Charts</a> — NicolasGoudry@G.Script (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/spfr/lo-fi-wireframing-kit.excalidrawlib" target="_blank" rel="noopener">Lo-Fi Wireframing Kit</a> — Aleksandra Lazovic (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/braweria/customer-journey-map.excalidrawlib" target="_blank" rel="noopener">Customer Journey Map</a> — Wiktoria Mielcarek / Braweria (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/youritjang/software-architecture.excalidrawlib" target="_blank" rel="noopener">Software Architecture</a> — Youri Tjang (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/rohanp/system-design.excalidrawlib" target="_blank" rel="noopener">System Design Components</a> — Rohan Pithadiya (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/BjoernKW/UML-ER-library.excalidrawlib" target="_blank" rel="noopener">Shapes for UML & ER Diagrams</a> — BjoernKW (MIT)</li>
+<li><a href="https://github.com/excalidraw/excalidraw-libraries/blob/main/libraries/dwelle/network-topology-icons.excalidrawlib" target="_blank" rel="noopener">Network topology icons</a> — dwelle (MIT)</li>
+      </ul>
     </div>
-  </section>
 
-  <section id="specification">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Specification</p>
-        <h2>Built around one file, not a database.</h2>
-      </div>
-      <div class="grid-cards">
-        <div class="card">
-          <h3>Plain, versioned file format</h3>
-          <p>Every project is one <code>.canya</code> file &mdash; a versioned JSON envelope you can back up, diff, or move by hand. No hidden state directory, no database.</p>
-        </div>
-        <div class="card">
-          <h3>A real canvas, not a clone</h3>
-          <p>Diagrams are drawn on an embedded Excalidraw canvas &mdash; the same hand-drawn shapes and tools, running natively inside the desktop app.</p>
-        </div>
-        <div class="card">
-          <h3>Sessions, folders, tabs</h3>
-          <p>Diagrams live in <em>sessions</em>, arranged into a reorderable folder tree and opened as tabs. Element properties, links and notes live in the same file, next to the drawing.</p>
-        </div>
-        <div class="card">
-          <h3>Autosave that can't half-write</h3>
-          <p>Autosave plus manual save (<code>Ctrl/Cmd+S</code>), written atomically to disk. A save is never left half-finished if the app closes mid-write.</p>
-        </div>
-        <div class="card">
-          <h3>No network, on principle</h3>
-          <p>Nothing calls out while you work. Two narrow, documented exceptions: importing a project from a public <code>https://</code> link you paste, and checking this site for a signed update at startup (which you can turn off). Nothing else makes a request.</p>
-        </div>
-        <div class="card">
-          <h3>Native on every desktop</h3>
-          <p>A Tauri shell, not a wrapped browser tab &mdash; native window chrome and file dialogs on macOS, Windows, and Linux.</p>
-        </div>
-      </div>
-      <div class="facts">
-        <span>plain <code>.canya</code> file</span><span class="sep">&middot;</span>
-        <span>atomic local writes</span><span class="sep">&middot;</span>
-        <span>fully usable offline</span><span class="sep">&middot;</span>
-        <span>no account required</span>
-      </div>
+    <div class="feedback-card">
+      <h2>Software</h2>
+      <p>Canya is built on <a href="https://excalidraw.com" target="_blank" rel="noopener">Excalidraw</a> (MIT), <a href="https://tauri.app" target="_blank" rel="noopener">Tauri</a> (MIT/Apache-2.0), React, <a href="https://github.com/dagrejs/dagre" target="_blank" rel="noopener">dagre</a> (MIT), <a href="https://mermaid.js.org" target="_blank" rel="noopener">Mermaid</a> (MIT) and <a href="https://pdf-lib.js.org" target="_blank" rel="noopener">pdf-lib</a> (MIT), among other open-source packages listed in the application's package manifest.</p>
     </div>
-  </section>
 
-  <section id="downloads">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Rev 0.7.0</p>
-        <h2>Pick your platform.</h2>
-      </div>
-      <div class="plat-grid">
-        <div class="plat">
-          <div class="plat-name">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.63 0 2.86.06 4.352 2.24-.114.07-2.594 1.51-2.594 4.61 0 3.71 3.232 5.01 3.187 4.98z"/></svg>
-            macOS
-          </div>
-          <div class="plat-files">.dmg &mdash; universal<br>Apple Silicon &amp; Intel</div>
-          <p class="plat-note">Signed and notarized with a Developer ID certificate.</p>
-          <a class="btn btn-accent" data-os="mac" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.7.0/Canya_0.7.0_universal.dmg">Get the .dmg</a>
-        </div>
-        <div class="plat">
-          <div class="plat-name">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10 4.4v6.9H3zm0 13 7 1.1v-6.8H3zm7.9 1.2L21 21V12.6h-10.1zM10.9 3l10.1-1.6v10H10.9z"/></svg>
-            Windows
-          </div>
-          <div class="plat-files">.msi / .exe &mdash; x64</div>
-          <p class="plat-note warn">Unsigned build for now &mdash; SmartScreen will warn on first run.</p>
-          <a class="btn btn-accent" data-os="win" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.7.0/Canya_0.7.0_x64-setup.exe">Get the installer</a>
-        </div>
-        <div class="plat">
-          <div class="plat-name">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-.9 0-1.7.8-2 1.9-.3 1-.1 2.6-.6 3.4-.5.8-1.8 1.7-2.5 3.1-.7 1.4-.6 3-1.1 3.8-.5.8-1.8 1.1-2 2.3-.2 1.2.6 2.1 1.7 2.4.1.9.9 1.6 2 1.4.5.8 1.6 1 2.4.5.7.5 1.8.5 2.5-.1.9.3 1.9 0 2.4-.8 1 0 1.7-.8 1.7-1.7 1-.4 1.5-1.5 1-2.4.3-1-.2-2-1.1-2.3-.1-1.2-.2-2.6-.9-3.7-.7-1.2-1.9-1.9-2.5-2.8-.5-.9-.3-2.5-.7-3.5-.4-1-1.2-1.9-2.3-1.9z"/></svg>
-            Linux
-          </div>
-          <div class="plat-files">.deb &middot; .AppImage &middot; .rpm<br>Arch: AUR <code>canya-bin</code></div>
-          <p class="plat-note">Built on Ubuntu 22.04 for broad glibc compatibility.</p>
-          <a class="btn btn-accent" data-os="linux" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.7.0/Canya_0.7.0_amd64.AppImage">Get the package</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="final">
-    <div class="wrap">
-      <h2>Draw the system. Keep the file.</h2>
-      <p>Free to download. Runs entirely on your machine &mdash; no account, no cloud.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-accent btn-lg" href="https://github.com/burak-kayaa/canya-site/releases/latest">Download Canya</a>
-        <a class="btn btn-quiet btn-lg" href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Release notes &rarr;</a>
-      </div>
-    </div>
+    <p class="feedback-note">All trademarks and marks remain the property of their respective owners.</p>
   </section>
 </main>
 
@@ -985,11 +800,9 @@
   <div class="wrap foot-inner">
     <span>&copy; 2026 Canya &mdash; local-first, no account required</span>
     <nav>
-      <a href="#features">Features</a>
-      <a href="#specification">Specification</a>
+      <a href="index.html#specification">Specification</a>
       <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
       <a href="feedback.html">Feedback</a>
-      <a href="credits.html">Credits</a>
     </nav>
   </div>
 </footer>
