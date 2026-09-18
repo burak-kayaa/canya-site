@@ -20,16 +20,18 @@
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
   :root {
-    --background: #fbfbfc;
-    --foreground: #18181b;
-    --card: #ffffff;
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
-    --faint: #a1a1aa;
-    --border: #e4e4e7;
-    --primary: #0e7d72;
-    --primary-foreground: #ffffff;
+    /* Canya's own tokens (apps/desktop/src/styles/globals.css). */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.141 0.005 285.823);
+    --card: oklch(1 0 0);
+    --muted: oklch(0.967 0.001 286.375);
+    --muted-foreground: oklch(0.552 0.016 285.938);
+    --faint: oklch(0.705 0.015 286.067);
+    --border: oklch(0.92 0.004 286.32);
+    --primary: oklch(0.511 0.096 186.391);
+    --primary-foreground: oklch(0.984 0.014 180.72);
     --grid: rgba(24, 24, 27, 0.05);
+    --radius: 0.625rem;
     --shadow-card: 0 1px 2px rgba(9, 9, 11, 0.04), 0 10px 28px -18px rgba(9, 9, 11, 0.16);
     --shadow-elev: 0 24px 70px -28px rgba(9, 9, 11, 0.28);
     --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -38,15 +40,15 @@
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --background: #09090b;
-      --foreground: #fafafa;
-      --card: #131316;
-      --muted: #1c1c20;
-      --muted-foreground: #9a9aa2;
-      --faint: #55555e;
-      --border: #232327;
-      --primary: #34d1bf;
-      --primary-foreground: #062621;
+      --background: oklch(0.141 0.005 285.823);
+      --foreground: oklch(0.985 0 0);
+      --card: oklch(0.21 0.006 285.885);
+      --muted: oklch(0.274 0.006 286.033);
+      --muted-foreground: oklch(0.705 0.015 286.067);
+      --faint: oklch(0.552 0.016 285.938);
+      --border: oklch(1 0 0 / 10%);
+      --primary: oklch(0.6 0.118 184.704);
+      --primary-foreground: oklch(0.984 0.014 180.72);
       --grid: rgba(255, 255, 255, 0.055);
       --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
       --shadow-elev: 0 24px 70px -28px rgba(0, 0, 0, 0.7);
@@ -54,15 +56,15 @@
   }
 
   :root[data-theme="dark"] {
-    --background: #09090b;
-    --foreground: #fafafa;
-    --card: #131316;
-    --muted: #1c1c20;
-    --muted-foreground: #9a9aa2;
-    --faint: #55555e;
-    --border: #232327;
-    --primary: #34d1bf;
-    --primary-foreground: #062621;
+    --background: oklch(0.141 0.005 285.823);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.21 0.006 285.885);
+    --muted: oklch(0.274 0.006 286.033);
+    --muted-foreground: oklch(0.705 0.015 286.067);
+    --faint: oklch(0.552 0.016 285.938);
+    --border: oklch(1 0 0 / 10%);
+    --primary: oklch(0.6 0.118 184.704);
+    --primary-foreground: oklch(0.984 0.014 180.72);
     --grid: rgba(255, 255, 255, 0.055);
     --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
     --shadow-elev: 0 24px 70px -28px rgba(0, 0, 0, 0.7);
@@ -298,202 +300,119 @@
     color: var(--faint);
   }
 
-  /* ---------- mock window ---------- */
+  /* ---------- screenshots ---------- */
 
-  .mock-wrap {
+  .shots-wrap {
     position: relative;
-    max-width: 1020px;
+    max-width: 1100px;
     margin: 56px auto 0;
     padding-inline: 24px;
   }
 
-  .mock {
-    border-radius: 12px;
+  .shots {
+    position: relative;
+    aspect-ratio: 1440 / 900;
+    border-radius: calc(var(--radius) * 1.4);
     background: var(--card);
-    box-shadow: var(--shadow-elev);
     border: 1px solid var(--border);
+    box-shadow: var(--shadow-elev);
     overflow: hidden;
+  }
+
+  .shots .slide {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+
+  .shots .slide.is-active {
+    opacity: 1;
+  }
+
+  .shots img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .shots-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 16px;
+    min-height: 1.6rem;
+  }
+
+  .captions {
+    position: relative;
+    flex: 1;
+    min-height: 1.6rem;
     text-align: left;
   }
 
-  .mock-titlebar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    height: 34px;
-    padding-inline: 14px;
-    background: color-mix(in oklab, var(--muted) 70%, transparent);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mock-titlebar .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: color-mix(in oklab, var(--faint) 45%, transparent);
-  }
-
-  .mock-titlebar .fname {
-    margin: 0 auto;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--faint);
-  }
-
-  .mock-body {
-    display: flex;
-    min-height: 340px;
-    font-size: 12.5px;
-  }
-
-  .mock-sidebar {
-    width: 208px;
-    flex: none;
-    background: color-mix(in oklab, var(--muted) 45%, transparent);
-    border-right: 1px solid var(--border);
-    padding: 12px 10px;
-  }
-
-  .mock-sidebar .sb-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 2px 6px 10px;
-  }
-
-  .mock-sidebar .sb-title {
-    font-weight: 600;
-    font-size: 12.5px;
-  }
-
-  .mock-sidebar .sb-count {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--faint);
-  }
-
-  .mock-newbtns {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 10px;
-  }
-
-  .mock-newbtn {
-    height: 22px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding-inline: 9px;
-    font-size: 10.5px;
-    font-weight: 600;
-  }
-
-  .mock-newbtn.primary {
-    background: var(--primary);
-    color: var(--primary-foreground);
-  }
-
-  .mock-newbtn.secondary {
-    background: var(--muted);
-    color: var(--foreground);
-  }
-
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 6px;
-    border-radius: 6px;
+  .caption {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
     color: var(--muted-foreground);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    text-wrap: pretty;
   }
 
-  .row.active {
-    background: color-mix(in oklab, var(--primary) 12%, transparent);
+  .caption strong {
     color: var(--foreground);
     font-weight: 600;
-    box-shadow: inset 2px 0 var(--primary);
   }
 
-  .row.folder {
-    font-weight: 600;
-    color: var(--foreground);
+  .caption.is-active {
+    opacity: 1;
   }
 
-  .row .indent {
-    width: 14px;
+  .dots {
+    display: flex;
+    gap: 8px;
     flex: none;
   }
 
-  .row svg {
-    flex: none;
-    opacity: 0.85;
+  .dots .dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 999px;
+    border: 0;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 150ms ease, transform 150ms ease;
   }
 
-  /* ---------- tabs + canvas ---------- */
-
-  .mock-main {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
+  .dots .dot:hover {
+    background: var(--faint);
   }
 
-  .mock-tabs {
-    display: flex;
-    gap: 2px;
-    padding: 8px 8px 0;
-    background: color-mix(in oklab, var(--muted) 25%, transparent);
-    border-bottom: 1px solid var(--border);
+  .dots .dot.is-active {
+    background: var(--primary);
+    transform: scale(1.25);
   }
 
-  .mock-tab {
-    padding: 6px 12px;
-    border-radius: 6px 6px 0 0;
-    font-size: 11.5px;
-    background: var(--card);
-    color: var(--foreground);
-    border: 1px solid var(--border);
-    border-bottom: none;
-  }
-
-  .mock-tab.inactive {
-    background: transparent;
-    border-color: transparent;
-    color: var(--faint);
-  }
-
-  .mock-canvas {
-    flex: 1;
-    position: relative;
-    background:
-      radial-gradient(circle, var(--border) 1px, transparent 1px) 0 0 / 18px 18px;
-  }
-
-  .sketch {
-    position: absolute;
-    border: 1.6px solid var(--foreground);
-    border-radius: 7px 9px 6px 8px;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--card);
-    opacity: 0.9;
-  }
-
-  .sketch.accent {
-    border-color: var(--primary);
-    color: var(--primary);
-  }
-
-  .sketch-arrow {
-    position: absolute;
-    stroke: var(--faint);
-    stroke-width: 1.6;
-    fill: none;
+  @media (max-width: 640px) {
+    .shots-nav {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .dots {
+      justify-content: center;
+    }
+    .captions {
+      text-align: center;
+      min-height: 3.2rem;
+    }
   }
 
   /* ---------- sections ---------- */
@@ -534,7 +453,7 @@
   }
 
   .card {
-    border-radius: 12px;
+    border-radius: calc(var(--radius) * 1.4);
     background: var(--card);
     box-shadow: var(--shadow-card);
     padding: 32px 34px;
@@ -622,7 +541,7 @@
   }
 
   .plat {
-    border-radius: 12px;
+    border-radius: calc(var(--radius) * 1.4);
     background: var(--card);
     box-shadow: var(--shadow-card);
     padding: 26px 24px;
@@ -706,9 +625,6 @@
     .plat-grid {
       grid-template-columns: 1fr;
     }
-    .mock-sidebar {
-      display: none;
-    }
     .nav-links {
       display: none;
     }
@@ -768,64 +684,43 @@
       <p class="hero-plats rise" style="animation-delay:340ms" id="detected-note">macOS &middot; Windows &middot; Linux &mdash; free, no account</p>
     </div>
 
-    <div class="mock-wrap rise" style="animation-delay:420ms">
-      <div class="mock">
-        <div class="mock-titlebar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <p class="fname">payment-architecture &mdash; canya</p>
-          <span style="width:44px"></span>
+    <div class="shots-wrap rise" style="animation-delay:420ms">
+      <div class="shots" id="shots" aria-roledescription="carousel" aria-label="Canya screenshots">
+        <figure class="slide is-active" data-slide="0">
+          <img src="assets/shots/01-overview-light.webp" alt="A whole system in one project" width="2400" height="1500" loading="eager" fetchpriority="high">
+        </figure>
+        <figure class="slide" data-slide="1">
+          <img src="assets/shots/02-properties-light.webp" alt="Boxes that know what they are" width="2400" height="1500" loading="lazy">
+        </figure>
+        <figure class="slide" data-slide="2">
+          <img src="assets/shots/03-icons-light.webp" alt="1,300+ technology icons" width="2400" height="1500" loading="lazy">
+        </figure>
+        <figure class="slide" data-slide="3">
+          <img src="assets/shots/04-palette-dark.webp" alt="Find anything, run anything" width="2400" height="1500" loading="lazy">
+        </figure>
+        <figure class="slide" data-slide="4">
+          <img src="assets/shots/05-present-light.webp" alt="Present without leaving the canvas" width="2400" height="1500" loading="lazy">
+        </figure>
+        <figure class="slide" data-slide="5">
+          <img src="assets/shots/06-overview-dark.webp" alt="Dark, when you are" width="2400" height="1500" loading="lazy">
+        </figure>
+      </div>
+      <div class="shots-nav">
+        <div class="captions" aria-live="polite">
+          <p class="caption is-active" data-caption="0"><strong>A whole system in one project</strong> Sessions in a folder tree, tabs, the minimap — one <code>.canya</code> file.</p>
+          <p class="caption" data-caption="1"><strong>Boxes that know what they are</strong> Type, title, tags and links on any element; the look follows the type.</p>
+          <p class="caption" data-caption="2"><strong>1,300+ technology icons</strong> Languages, frameworks, databases, AWS, Azure, Google Cloud — and your own.</p>
+          <p class="caption" data-caption="3"><strong>Find anything, run anything</strong> <code>Ctrl+K</code> searches sessions, text and metadata, and lists every command.</p>
+          <p class="caption" data-caption="4"><strong>Present without leaving the canvas</strong> <code>F5</code> steps through sessions and frames full screen.</p>
+          <p class="caption" data-caption="5"><strong>Dark, when you are</strong> The canvas follows the app theme; exports stay light.</p>
         </div>
-        <div class="mock-body">
-          <div class="mock-sidebar">
-            <div class="sb-head">
-              <span class="sb-title">Sessions</span>
-              <span class="sb-count">3</span>
-            </div>
-            <div class="mock-newbtns">
-              <div class="mock-newbtn primary">+ New &#9662;</div>
-            </div>
-            <div class="row folder">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
-              Diagrams
-            </div>
-            <div class="row">
-              <span class="indent"></span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Checkout flow
-            </div>
-            <div class="row">
-              <span class="indent"></span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Auth flow
-            </div>
-            <div class="row active">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Payment gateway
-            </div>
-          </div>
-          <div class="mock-main">
-            <div class="mock-tabs">
-              <div class="mock-tab inactive">Auth flow</div>
-              <div class="mock-tab">Payment gateway</div>
-            </div>
-            <div class="mock-canvas">
-              <div class="sketch" style="left:6%;top:24%;width:19%;height:15%;transform:rotate(-0.6deg)">Client</div>
-              <div class="sketch" style="left:38%;top:16%;width:24%;height:15%;transform:rotate(0.4deg)">API Gateway</div>
-              <div class="sketch accent" style="left:38%;top:56%;width:24%;height:15%;transform:rotate(-0.3deg)">Payment Svc</div>
-              <div class="sketch" style="left:74%;top:36%;width:20%;height:15%;transform:rotate(0.5deg)">Ledger DB</div>
-              <svg class="sketch-arrow" style="left:0;top:0;width:100%;height:100%" viewBox="0 0 400 220" preserveAspectRatio="none">
-                <path d="M100 55 L152 47" marker-end="url(#ah)"></path>
-                <path d="M212 65 L212 120" marker-end="url(#ah)"></path>
-                <path d="M270 120 L296 92" marker-end="url(#ah)"></path>
-                <defs>
-                  <marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="var(--faint)"></path>
-                  </marker>
-                </defs>
-              </svg>
-            </div>
-          </div>
+        <div class="dots" role="tablist">
+          <button class="dot is-active" type="button" data-go="0" aria-label="A whole system in one project" aria-current="true"></button>
+          <button class="dot" type="button" data-go="1" aria-label="Boxes that know what they are"></button>
+          <button class="dot" type="button" data-go="2" aria-label="1,300+ technology icons"></button>
+          <button class="dot" type="button" data-go="3" aria-label="Find anything, run anything"></button>
+          <button class="dot" type="button" data-go="4" aria-label="Present without leaving the canvas"></button>
+          <button class="dot" type="button" data-go="5" aria-label="Dark, when you are"></button>
         </div>
       </div>
     </div>
@@ -942,7 +837,7 @@
   <section id="downloads">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Rev 0.9.0</p>
+        <p class="eyebrow">Rev 0.9.1</p>
         <h2>Pick your platform.</h2>
       </div>
       <div class="plat-grid">
@@ -953,7 +848,7 @@
           </div>
           <div class="plat-files">.dmg &mdash; universal<br>Apple Silicon &amp; Intel</div>
           <p class="plat-note">Signed and notarized with a Developer ID certificate.</p>
-          <a class="btn btn-accent" data-os="mac" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.9.0/Canya_0.9.0_universal.dmg">Get the .dmg</a>
+          <a class="btn btn-accent" data-os="mac" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.9.1/Canya_0.9.1_universal.dmg">Get the .dmg</a>
         </div>
         <div class="plat">
           <div class="plat-name">
@@ -962,7 +857,7 @@
           </div>
           <div class="plat-files">.msi / .exe &mdash; x64</div>
           <p class="plat-note warn">Unsigned build for now &mdash; SmartScreen will warn on first run.</p>
-          <a class="btn btn-accent" data-os="win" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.9.0/Canya_0.9.0_x64-setup.exe">Get the installer</a>
+          <a class="btn btn-accent" data-os="win" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.9.1/Canya_0.9.1_x64-setup.exe">Get the installer</a>
         </div>
         <div class="plat">
           <div class="plat-name">
@@ -971,7 +866,7 @@
           </div>
           <div class="plat-files">.deb &middot; .AppImage &middot; .rpm<br>Arch: AUR <code>canya-bin</code></div>
           <p class="plat-note">Built on Ubuntu 22.04 for broad glibc compatibility.</p>
-          <a class="btn btn-accent" data-os="linux" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.9.0/Canya_0.9.0_amd64.AppImage">Get the package</a>
+          <a class="btn btn-accent" data-os="linux" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.9.1/Canya_0.9.1_amd64.AppImage">Get the package</a>
         </div>
       </div>
     </div>
@@ -1047,6 +942,39 @@
       var note = document.getElementById("detected-note");
       if (note) note.innerHTML = "Detected <strong style=\"color:var(--primary)\">" + label[os] + "</strong> &mdash; jump straight to the download below.";
     } catch (e) {}
+  })();
+</script>
+<script>
+  (function () {
+    var root = document.getElementById("shots");
+    if (!root) return;
+    var slides = root.querySelectorAll(".slide");
+    var captions = document.querySelectorAll(".caption");
+    var dots = document.querySelectorAll(".dots .dot");
+    var index = 0, timer = null, paused = false;
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function show(i) {
+      index = (i + slides.length) % slides.length;
+      for (var k = 0; k < slides.length; k++) {
+        slides[k].classList.toggle("is-active", k === index);
+        captions[k].classList.toggle("is-active", k === index);
+        dots[k].classList.toggle("is-active", k === index);
+        if (k === index) dots[k].setAttribute("aria-current", "true"); else dots[k].removeAttribute("aria-current");
+      }
+    }
+    function tick() { if (!paused && !document.hidden) show(index + 1); }
+    function start() { if (reduce || timer) return; timer = setInterval(tick, 5000); }
+    for (var d = 0; d < dots.length; d++) dots[d].addEventListener("click", function (e) { show(Number(e.currentTarget.getAttribute("data-go"))); });
+    var wrap = root.parentElement;
+    wrap.addEventListener("mouseenter", function () { paused = true; });
+    wrap.addEventListener("mouseleave", function () { paused = false; });
+    wrap.addEventListener("focusin", function () { paused = true; });
+    wrap.addEventListener("focusout", function () { paused = false; });
+    // Open on the dark screenshot when the page itself is dark.
+    var pref = document.documentElement.getAttribute("data-theme");
+    var dark = pref === "dark" || (pref !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+    if (dark) show(slides.length - 1);
+    start();
   })();
 </script>
 </body>
