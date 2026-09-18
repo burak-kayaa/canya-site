@@ -687,40 +687,45 @@
     <div class="shots-wrap rise" style="animation-delay:420ms">
       <div class="shots" id="shots" aria-roledescription="carousel" aria-label="Canya screenshots">
         <figure class="slide is-active" data-slide="0">
-          <img src="assets/shots/01-overview-light.webp" alt="A whole system in one project" width="2400" height="1500" loading="eager" fetchpriority="high">
+          <img data-light="assets/shots/00-home-light.webp" data-dark="assets/shots/00-home-dark.webp" alt="Your projects, as files" width="2400" height="1500" fetchpriority="high">
         </figure>
         <figure class="slide" data-slide="1">
-          <img src="assets/shots/02-properties-light.webp" alt="Boxes that know what they are" width="2400" height="1500" loading="lazy">
+          <img data-light="assets/shots/01-welcome-light.webp" data-dark="assets/shots/01-welcome-dark.webp" alt="A whole system in one project" width="2400" height="1500" loading="lazy">
         </figure>
         <figure class="slide" data-slide="2">
-          <img src="assets/shots/03-icons-light.webp" alt="1,300+ technology icons" width="2400" height="1500" loading="lazy">
+          <img data-light="assets/shots/02-properties-light.webp" data-dark="assets/shots/02-properties-dark.webp" alt="Boxes that know what they are" width="2400" height="1500" loading="lazy">
         </figure>
         <figure class="slide" data-slide="3">
-          <img src="assets/shots/04-palette-dark.webp" alt="Find anything, run anything" width="2400" height="1500" loading="lazy">
+          <img data-light="assets/shots/03-icons-light.webp" data-dark="assets/shots/03-icons-dark.webp" alt="1,300+ technology icons" width="2400" height="1500" loading="lazy">
         </figure>
         <figure class="slide" data-slide="4">
-          <img src="assets/shots/05-present-light.webp" alt="Present without leaving the canvas" width="2400" height="1500" loading="lazy">
+          <img data-light="assets/shots/04-palette-light.webp" data-dark="assets/shots/04-palette-dark.webp" alt="Find anything, run anything" width="2400" height="1500" loading="lazy">
         </figure>
         <figure class="slide" data-slide="5">
-          <img src="assets/shots/06-overview-dark.webp" alt="Dark, when you are" width="2400" height="1500" loading="lazy">
+          <img data-light="assets/shots/06-inventory-light.webp" data-dark="assets/shots/06-inventory-dark.webp" alt="Metadata that does work" width="2400" height="1500" loading="lazy">
+        </figure>
+        <figure class="slide" data-slide="6">
+          <img data-light="assets/shots/05-present-light.webp" data-dark="assets/shots/05-present-dark.webp" alt="Present without leaving the canvas" width="2400" height="1500" loading="lazy">
         </figure>
       </div>
       <div class="shots-nav">
         <div class="captions" aria-live="polite">
-          <p class="caption is-active" data-caption="0"><strong>A whole system in one project</strong> Sessions in a folder tree, tabs, the minimap — one <code>.canya</code> file.</p>
-          <p class="caption" data-caption="1"><strong>Boxes that know what they are</strong> Type, title, tags and links on any element; the look follows the type.</p>
-          <p class="caption" data-caption="2"><strong>1,300+ technology icons</strong> Languages, frameworks, databases, AWS, Azure, Google Cloud — and your own.</p>
-          <p class="caption" data-caption="3"><strong>Find anything, run anything</strong> <code>Ctrl+K</code> searches sessions, text and metadata, and lists every command.</p>
-          <p class="caption" data-caption="4"><strong>Present without leaving the canvas</strong> <code>F5</code> steps through sessions and frames full screen.</p>
-          <p class="caption" data-caption="5"><strong>Dark, when you are</strong> The canvas follows the app theme; exports stay light.</p>
+          <p class="caption is-active" data-caption="0"><strong>Your projects, as files</strong> Each project is one <code>.canya</code> file on your disk — open, copy, back up, put in Git.</p>
+          <p class="caption" data-caption="1"><strong>A whole system in one project</strong> Sessions in a folder tree, tabs, notes, the minimap — one file.</p>
+          <p class="caption" data-caption="2"><strong>Boxes that know what they are</strong> Type, title, tags and links on any element; the look follows the type.</p>
+          <p class="caption" data-caption="3"><strong>1,300+ technology icons</strong> Languages, frameworks, databases, AWS, Azure, Google Cloud — and your own.</p>
+          <p class="caption" data-caption="4"><strong>Find anything, run anything</strong> <code>Ctrl+K</code> searches sessions, text and metadata, and lists every command.</p>
+          <p class="caption" data-caption="5"><strong>Metadata that does work</strong> Every annotated element in one table: filter by tag or type, jump to it, export CSV.</p>
+          <p class="caption" data-caption="6"><strong>Present without leaving the canvas</strong> <code>F5</code> steps through sessions and frames full screen.</p>
         </div>
         <div class="dots" role="tablist">
-          <button class="dot is-active" type="button" data-go="0" aria-label="A whole system in one project" aria-current="true"></button>
-          <button class="dot" type="button" data-go="1" aria-label="Boxes that know what they are"></button>
-          <button class="dot" type="button" data-go="2" aria-label="1,300+ technology icons"></button>
-          <button class="dot" type="button" data-go="3" aria-label="Find anything, run anything"></button>
-          <button class="dot" type="button" data-go="4" aria-label="Present without leaving the canvas"></button>
-          <button class="dot" type="button" data-go="5" aria-label="Dark, when you are"></button>
+          <button class="dot is-active" type="button" data-go="0" aria-label="Your projects, as files" aria-current="true"></button>
+          <button class="dot" type="button" data-go="1" aria-label="A whole system in one project"></button>
+          <button class="dot" type="button" data-go="2" aria-label="Boxes that know what they are"></button>
+          <button class="dot" type="button" data-go="3" aria-label="1,300+ technology icons"></button>
+          <button class="dot" type="button" data-go="4" aria-label="Find anything, run anything"></button>
+          <button class="dot" type="button" data-go="5" aria-label="Metadata that does work"></button>
+          <button class="dot" type="button" data-go="6" aria-label="Present without leaving the canvas"></button>
         </div>
       </div>
     </div>
@@ -949,10 +954,24 @@
     var root = document.getElementById("shots");
     if (!root) return;
     var slides = root.querySelectorAll(".slide");
+    var images = root.querySelectorAll("img");
     var captions = document.querySelectorAll(".caption");
     var dots = document.querySelectorAll(".dots .dot");
     var index = 0, timer = null, paused = false;
+    var media = matchMedia("(prefers-color-scheme: dark)");
     var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function isDark() {
+      var pref = document.documentElement.getAttribute("data-theme");
+      return pref === "dark" || (pref !== "light" && media.matches);
+    }
+    // Screenshots follow the page theme: dark page, dark app.
+    function applyTheme() {
+      var key = isDark() ? "dark" : "light";
+      for (var k = 0; k < images.length; k++) {
+        var want = images[k].getAttribute("data-" + key);
+        if (images[k].getAttribute("src") !== want) images[k].setAttribute("src", want);
+      }
+    }
     function show(i) {
       index = (i + slides.length) % slides.length;
       for (var k = 0; k < slides.length; k++) {
@@ -970,10 +989,9 @@
     wrap.addEventListener("mouseleave", function () { paused = false; });
     wrap.addEventListener("focusin", function () { paused = true; });
     wrap.addEventListener("focusout", function () { paused = false; });
-    // Open on the dark screenshot when the page itself is dark.
-    var pref = document.documentElement.getAttribute("data-theme");
-    var dark = pref === "dark" || (pref !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
-    if (dark) show(slides.length - 1);
+    applyTheme();
+    new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    if (media.addEventListener) media.addEventListener("change", applyTheme);
     start();
   })();
 </script>
