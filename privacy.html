@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How Canya, its website and the optional Canya Teams service handle your data.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3.5' y='5.5' width='18' height='18' rx='4.5' transform='rotate(-10 3.5 5.5)' fill='%235eead4' opacity='.55'/%3E%3Crect x='10.5' y='9.5' width='18' height='18' rx='4.5' transform='rotate(-10 10.5 9.5)' fill='%2316897c'/%3E%3C/svg%3E">
+<title>Privacy Policy · Canya</title>
+<script>
+  (function () {
+    try {
+      var pref = localStorage.getItem("canya-theme") || "system";
+      var dark = pref === "dark" || (pref === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+      if (pref !== "system") document.documentElement.setAttribute("data-theme", pref);
+      void dark;
+    } catch (e) {}
+  })();
+</script>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+  :root {
+    --background: #fbfbfc;
+    --foreground: #18181b;
+    --card: #ffffff;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --faint: #a1a1aa;
+    --border: #e4e4e7;
+    --primary: #0e7d72;
+    --primary-foreground: #ffffff;
+    --grid: rgba(24, 24, 27, 0.05);
+    --shadow-card: 0 1px 2px rgba(9, 9, 11, 0.04), 0 10px 28px -18px rgba(9, 9, 11, 0.16);
+    --shadow-elev: 0 24px 70px -28px rgba(9, 9, 11, 0.28);
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --background: #09090b;
+      --foreground: #fafafa;
+      --card: #131316;
+      --muted: #1c1c20;
+      --muted-foreground: #9a9aa2;
+      --faint: #55555e;
+      --border: #232327;
+      --primary: #34d1bf;
+      --primary-foreground: #062621;
+      --grid: rgba(255, 255, 255, 0.055);
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
+      --shadow-elev: 0 24px 70px -28px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #131316;
+    --muted: #1c1c20;
+    --muted-foreground: #9a9aa2;
+    --faint: #55555e;
+    --border: #232327;
+    --primary: #34d1bf;
+    --primary-foreground: #062621;
+    --grid: rgba(255, 255, 255, 0.055);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
+    --shadow-elev: 0 24px 70px -28px rgba(0, 0, 0, 0.7);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+
+  /* ---------- header ---------- */
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in oklab, var(--background) 72%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  nav.bar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 44px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--muted-foreground);
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--foreground);
+  }
+
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .icon-btn:hover {
+    background: var(--muted);
+    color: var(--foreground);
+  }
+
+  /* ---------- buttons ---------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 28px;
+    padding-inline: 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: filter 0.15s ease, background 0.15s ease, transform 0.1s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn-accent {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .btn-accent:hover {
+    filter: brightness(1.06);
+  }
+
+  .btn-quiet {
+    color: var(--muted-foreground);
+  }
+
+  .btn-quiet:hover {
+    background: var(--muted);
+    color: var(--foreground);
+  }
+
+  .btn-lg {
+    height: 34px;
+    padding-inline: 18px;
+    font-size: 13px;
+  }
+
+  /* ---------- rise animation ---------- */
+
+  @keyframes rise {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .rise {
+    animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; }
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: linear-gradient(#000 45%, transparent 85%);
+    mask-image: linear-gradient(#000 45%, transparent 85%);
+  }
+
+  .hero-inner {
+    position: relative;
+    padding-block: 108px 44px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  h1.display {
+    letter-spacing: -0.045em;
+    margin: 22px auto 0;
+    max-width: 46rem;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.04;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .hero-sub {
+    margin: 30px auto 0;
+    max-width: 42rem;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+    text-wrap: pretty;
+  }
+
+  .hero-ctas {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero-plats {
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--faint);
+  }
+
+  /* ---------- mock window ---------- */
+
+  .mock-wrap {
+    position: relative;
+    max-width: 1020px;
+    margin: 56px auto 0;
+    padding-inline: 24px;
+  }
+
+  .mock {
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow-elev);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .mock-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 34px;
+    padding-inline: 14px;
+    background: color-mix(in oklab, var(--muted) 70%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mock-titlebar .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--faint) 45%, transparent);
+  }
+
+  .mock-titlebar .fname {
+    margin: 0 auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+
+  .mock-body {
+    display: flex;
+    min-height: 340px;
+    font-size: 12.5px;
+  }
+
+  .mock-sidebar {
+    width: 208px;
+    flex: none;
+    background: color-mix(in oklab, var(--muted) 45%, transparent);
+    border-right: 1px solid var(--border);
+    padding: 12px 10px;
+  }
+
+  .mock-sidebar .sb-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2px 6px 10px;
+  }
+
+  .mock-sidebar .sb-title {
+    font-weight: 600;
+    font-size: 12.5px;
+  }
+
+  .mock-sidebar .sb-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--faint);
+  }
+
+  .mock-newbtns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .mock-newbtn {
+    height: 22px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-inline: 9px;
+    font-size: 10.5px;
+    font-weight: 600;
+  }
+
+  .mock-newbtn.primary {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .mock-newbtn.secondary {
+    background: var(--muted);
+    color: var(--foreground);
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 6px;
+    border-radius: 6px;
+    color: var(--muted-foreground);
+  }
+
+  .row.active {
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: var(--foreground);
+    font-weight: 600;
+    box-shadow: inset 2px 0 var(--primary);
+  }
+
+  .row.folder {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .row .indent {
+    width: 14px;
+    flex: none;
+  }
+
+  .row svg {
+    flex: none;
+    opacity: 0.85;
+  }
+
+  /* ---------- tabs + canvas ---------- */
+
+  .mock-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mock-tabs {
+    display: flex;
+    gap: 2px;
+    padding: 8px 8px 0;
+    background: color-mix(in oklab, var(--muted) 25%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mock-tab {
+    padding: 6px 12px;
+    border-radius: 6px 6px 0 0;
+    font-size: 11.5px;
+    background: var(--card);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  .mock-tab.inactive {
+    background: transparent;
+    border-color: transparent;
+    color: var(--faint);
+  }
+
+  .mock-canvas {
+    flex: 1;
+    position: relative;
+    background:
+      radial-gradient(circle, var(--border) 1px, transparent 1px) 0 0 / 18px 18px;
+  }
+
+  .sketch {
+    position: absolute;
+    border: 1.6px solid var(--foreground);
+    border-radius: 7px 9px 6px 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card);
+    opacity: 0.9;
+  }
+
+  .sketch.accent {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .sketch-arrow {
+    position: absolute;
+    stroke: var(--faint);
+    stroke-width: 1.6;
+    fill: none;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    padding-block: 64px;
+  }
+
+  .section-head {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 44px;
+  }
+
+  .section-head .eyebrow {
+    display: block;
+  }
+
+  .section-head h2 {
+    margin: 16px 0 0;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow-card);
+    padding: 32px 34px;
+    transition: background 0.2s ease;
+  }
+
+  .card:hover {
+    background: color-mix(in oklab, var(--muted) 55%, var(--card));
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .card p {
+    margin: 10px 0 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+
+  .card code,
+  .facts code {
+    font-family: var(--font-mono);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: var(--primary);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.87em;
+  }
+
+  .facts {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 28px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--faint);
+    text-align: center;
+  }
+
+  .facts span.sep {
+    opacity: 0.6;
+  }
+
+  /* ---------- final cta ---------- */
+
+  .final {
+    text-align: center;
+    padding-block: 96px 120px;
+  }
+
+  .final h2 {
+    letter-spacing: -0.04em;
+    margin: 0 auto;
+    max-width: 42rem;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .final p {
+    margin: 18px auto 0;
+    max-width: 30rem;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+  }
+
+  .final .hero-ctas {
+    margin-top: 32px;
+  }
+
+  /* ---------- download panel ---------- */
+
+  .plat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .plat {
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow-card);
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .plat-name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .plat-files {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted-foreground);
+    line-height: 1.7;
+  }
+
+  .plat-note {
+    font-size: 0.82rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  .plat-note.warn {
+    color: #a35b12;
+  }
+
+  .plat .btn {
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    background: color-mix(in oklab, var(--muted) 55%, transparent);
+    border-top: 1px solid var(--border);
+  }
+
+  .foot-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-block: 14px;
+    font-size: 11px;
+    color: var(--faint);
+  }
+
+  .foot-inner a {
+    text-decoration: none;
+  }
+
+  .foot-inner nav {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .foot-inner nav a:hover {
+    color: var(--foreground);
+  }
+
+  @media (max-width: 760px) {
+    .grid-cards,
+    .plat-grid {
+      grid-template-columns: 1fr;
+    }
+    .mock-sidebar {
+      display: none;
+    }
+    .nav-links {
+      display: none;
+    }
+    .hero-inner {
+      padding-block: 84px 32px;
+    }
+  }
+</style>
+<style>
+  .feedback-wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 72px; }
+  .feedback-wrap h1 { font-size: 2rem; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .feedback-wrap .lead { color: var(--muted-foreground); margin: 0 0 32px; font-size: 1.05rem; }
+  .feedback-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-card); padding: 24px; margin-bottom: 20px; }
+  .feedback-card h2 { font-size: 1.05rem; margin: 0 0 6px; }
+  .feedback-card p { color: var(--muted-foreground); margin: 0 0 14px; }
+  .feedback-card ul { margin: 0; padding-left: 18px; color: var(--muted-foreground); line-height: 1.7; }
+  .feedback-card li + li { margin-top: 4px; }
+  .feedback-card .btn + .btn { margin-left: 8px; }
+  .feedback-note { font-size: 0.85rem; color: var(--faint); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="bar">
+    <a class="brand" href="index.html#top">
+      <svg width="16" height="16" viewBox="0 0 32 32">
+        <rect x="3.5" y="5.5" width="18" height="18" rx="4.5" transform="rotate(-10 3.5 5.5)" fill="var(--primary)" opacity="0.5"/>
+        <rect x="10.5" y="9.5" width="18" height="18" rx="4.5" transform="rotate(-10 10.5 9.5)" fill="var(--primary)"/>
+      </svg>
+      canya
+    </a>
+    <div class="nav-links">
+      <a href="index.html#specification">Specification</a>
+      <a href="index.html#downloads">Download</a>
+      <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="feedback.html">Feedback</a>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" title="Toggle theme" aria-label="Toggle theme">
+        <svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+      </button>
+      <a class="btn btn-accent" href="index.html#downloads">Download</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="feedback-wrap">
+    <h1>Privacy Policy</h1>
+    <p class="lead">Canya is a desktop app that works without an account. This page explains what happens to your data when you use the app, this website, and the optional Canya Teams service.</p>
+    <p class="feedback-note">Last updated: 14 October 2026 &middot; <a href="#kvkk">Türkçe: KVKK Aydınlatma Metni</a></p>
+
+    <div class="feedback-card">
+      <h2>Who is responsible</h2>
+      <p>Canya is made and run by <strong>Burak Kaya</strong>, an individual based in Türkiye, who is the data controller for the processing described here. Questions and requests: <a href="mailto:dev@burkaya.com">dev@burkaya.com</a>.</p>
+    </div>
+
+    <div class="feedback-card">
+      <h2>The desktop app</h2>
+      <p>Your projects are files on your own computer. The app has no telemetry, analytics or crash reporting, and it does not send your diagrams anywhere. Its error log stays on your device. The app only goes online in these cases:</p>
+      <ul>
+        <li><strong>Update check</strong> &mdash; at start-up the app fetches the latest release information from GitHub, where Canya's releases are hosted. GitHub sees your IP address. You can turn this off in Settings.</li>
+        <li><strong>Import from a link</strong> &mdash; only when you paste a link and ask for it, the app downloads that one address.</li>
+        <li><strong>Feedback</strong> &mdash; the feedback buttons open a form or a GitHub issue in your browser; the app itself sends nothing.</li>
+        <li><strong>Canya Teams</strong> &mdash; only after you sign in, as described below.</li>
+      </ul>
+    </div>
+
+    <div class="feedback-card">
+      <h2>This website</h2>
+      <ul>
+        <li>The site is hosted on GitHub Pages. GitHub processes your IP address to deliver the pages, under the <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+        <li>Page views and download clicks are counted with <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, which sets no cookies and builds no profile of you.</li>
+        <li>Fonts are loaded from Google Fonts, so your browser contacts Google, which sees your IP address.</li>
+        <li>Your light/dark theme choice is kept in your browser's local storage and never leaves it.</li>
+      </ul>
+    </div>
+
+    <div class="feedback-card">
+      <h2>Canya Teams: what we store</h2>
+      <p>Canya Teams (share links, project sync and live collaboration) is optional and needs an account. When you use it, we store:</p>
+      <ul>
+        <li><strong>Your account</strong> &mdash; the sign-in provider you chose (GitHub or Google), that provider's user ID for you, your e-mail address, display name and profile picture address.</li>
+        <li><strong>Sign-in sessions</strong> &mdash; a hashed session token, the device's user agent and when it was last used. Sessions last 30 days and are renewed while you keep using the app; the app keeps its token in your operating system's keychain.</li>
+        <li><strong>Subscription</strong> &mdash; trial dates, subscription status and the customer and subscription IDs from our payment provider. We never see your card details.</li>
+        <li><strong>Your content, encrypted</strong> &mdash; shared links, synced projects and shared projects are encrypted on your device before upload, and the keys stay with you (a share link's key sits after the <code>#</code>, which browsers never send to a server). We cannot read your diagrams or their titles. We do see sizes, dates, link expiry, who belongs to which shared project and with what role, and invitation records.</li>
+        <li><strong>Live collaboration</strong> &mdash; edits and cursors are relayed encrypted between participants and are not stored on their own; the shared project itself is stored encrypted like a synced project.</li>
+        <li><strong>Technical data</strong> &mdash; your IP address is used in memory to limit abusive request rates and is not written to our logs. Request logs record the method, path, status and duration.</li>
+      </ul>
+      <p>The only cookie is a short-lived, signed one in your browser during sign-in, which ties the provider's answer to your sign-in attempt. There are no advertising or tracking cookies.</p>
+    </div>
+
+    <div class="feedback-card">
+      <h2>Why we use it</h2>
+      <ul>
+        <li>To provide the service you signed up for &mdash; performance of a contract.</li>
+        <li>To keep the service secure and prevent abuse &mdash; our legitimate interest.</li>
+        <li>To keep subscription and accounting records the law requires &mdash; legal obligation.</li>
+      </ul>
+      <p>We do not sell your data, show ads or use your data for profiling.</p>
+    </div>
+
+    <div class="feedback-card">
+      <h2>Who else is involved</h2>
+      <ul>
+        <li><strong>GitHub and Google</strong> &mdash; when you sign in with them they share your account ID, e-mail address, name and picture with us, under their own privacy policies.</li>
+        <li><strong>Lemon Squeezy</strong> &mdash; sells Canya Teams subscriptions as merchant of record. It collects your payment details and billing address as an independent controller under its <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">privacy policy</a> and tells us only the subscription status and IDs.</li>
+        <li><strong>Hosting</strong> &mdash; the Canya Teams servers and backups run in Türkiye.</li>
+      </ul>
+      <p>GitHub, Google and Lemon Squeezy operate outside Türkiye, mainly in the United States, so using them involves transferring data abroad.</p>
+    </div>
+
+    <div class="feedback-card">
+      <h2>How long we keep it</h2>
+      <ul>
+        <li>Account data: for as long as your account exists.</li>
+        <li>Expired share links: removed 30 days after they expire.</li>
+        <li>After a subscription ends: links stop working after a 30-day grace period, and the encrypted content of links and synced projects is deleted 90 days after the subscription ended.</li>
+        <li>Backups: kept for 14 days, then overwritten. Your content in them is encrypted like everywhere else.</li>
+      </ul>
+      <p>You can unpublish links and stop syncing yourself at any time; that deletes the stored copies. To delete your whole account, write to <a href="mailto:dev@burkaya.com">dev@burkaya.com</a> from the address on the account.</p>
+    </div>
+
+    <div class="feedback-card">
+      <h2>Your rights</h2>
+      <p>You can ask to see, correct, export or delete your data, object to its use, or ask what has been done with it. Write to <a href="mailto:dev@burkaya.com">dev@burkaya.com</a>; we answer within 30 days. You may also complain to a data protection authority &mdash; in Türkiye the Personal Data Protection Authority (KVKK), in the EU the authority of your country.</p>
+      <p>Canya Teams is not meant for children under 16.</p>
+    </div>
+
+    <div class="feedback-card">
+      <h2>Changes</h2>
+      <p>When this policy changes we update this page and the date above. Significant changes are announced in the app or by e-mail before they apply.</p>
+    </div>
+
+    <div class="feedback-card" id="kvkk" lang="tr">
+      <h2>KVKK Aydınlatma Metni</h2>
+      <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (&ldquo;KVKK&rdquo;) madde 10 uyarınca:</p>
+      <ul>
+        <li><strong>Veri sorumlusu:</strong> Burak Kaya &mdash; <a href="mailto:dev@burkaya.com">dev@burkaya.com</a>.</li>
+        <li><strong>İşlenen veriler:</strong> Masaüstü uygulaması hesap olmadan çalışır ve projelerinizi göndermez. Canya Teams kullanılırsa: giriş sağlayıcısı (GitHub/Google) ve oradaki kullanıcı kimliğiniz, e-posta adresiniz, adınız, profil fotoğrafı adresi; oturum bilgileri (karma değeri alınmış oturum anahtarı, cihazın user-agent bilgisi, son kullanım zamanı); abonelik durumu ve ödeme sağlayıcısındaki müşteri/abonelik numaraları; cihazınızda şifrelenmiş içerik ile boyut, tarih ve üyelik bilgileri. Şifreli içeriği okuyamayız. IP adresiniz yalnızca bellekte, kötüye kullanımı sınırlamak için kullanılır ve kayıtlara yazılmaz.</li>
+        <li><strong>Amaç ve hukuki sebep:</strong> Üyelik sözleşmesinin kurulması ve ifası (KVKK m. 5/2-c), hizmetin güvenliği için meşru menfaat (m. 5/2-f), kanuni yükümlülükler (m. 5/2-ç).</li>
+        <li><strong>Toplama yöntemi:</strong> Uygulama üzerinden ve seçtiğiniz giriş sağlayıcısından, elektronik ortamda, otomatik yollarla.</li>
+        <li><strong>Aktarım:</strong> Giriş için GitHub ve Google'a, ödeme için satıcı sıfatıyla Lemon Squeezy'ye, barındırma için Türkiye'deki sunuculara. Bu hizmetlerin bir kısmı yurt dışındadır; yurt dışına aktarım KVKK m. 9'a uygun olarak yapılır.</li>
+        <li><strong>Saklama süresi:</strong> Hesap verileri hesap sürdükçe; süresi dolan paylaşım bağlantıları 30 gün sonra; abonelik bittikten sonra şifreli içerik 90 gün sonra silinir. Yedekler 14 gün saklanır.</li>
+        <li><strong>Haklarınız (KVKK m. 11):</strong> Verilerinizin işlenip işlenmediğini öğrenme, bilgi isteme, işlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme, aktarıldığı kişileri bilme, düzeltilmesini, silinmesini ya da yok edilmesini isteme, bu işlemlerin aktarılan kişilere bildirilmesini isteme, otomatik analiz sonucu aleyhinize bir sonuça itiraz etme ve zararınızın giderilmesini talep etme. Başvurularınızı <a href="mailto:dev@burkaya.com">dev@burkaya.com</a> adresine iletebilirsiniz; en geç 30 gün içinde yanıtlanır. Kişisel Verileri Koruma Kurumu'na şikayet hakkınız saklıdır.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>&copy; 2026 Canya &mdash; local-first, no account required</span>
+    <nav>
+      <a href="index.html#specification">Specification</a>
+      <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="credits.html">Credits</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    try {
+      var root = document.documentElement;
+      var btn = document.getElementById("theme-toggle");
+      var order = ["system", "light", "dark"];
+      var icons = {
+        system: '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>',
+        light: '<circle cx="12" cy="12" r="4.2"></circle>',
+        dark: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.4 6.4 0 0 0 10.5 10.5z"></path>'
+      };
+      var icon = document.getElementById("theme-icon");
+
+      function apply(pref) {
+        if (pref === "system") root.removeAttribute("data-theme");
+        else root.setAttribute("data-theme", pref);
+        icon.innerHTML = icons[pref];
+        btn.title = "Theme: " + pref;
+        try { localStorage.setItem("canya-theme", pref); } catch (e) {}
+      }
+
+      var current = "system";
+      try { current = localStorage.getItem("canya-theme") || "system"; } catch (e) {}
+      apply(current);
+
+      btn.addEventListener("click", function () {
+        current = order[(order.indexOf(current) + 1) % order.length];
+        apply(current);
+      });
+    } catch (e) {}
+  })();
+
+  (function () {
+    try {
+      var ua = navigator.userAgent || "";
+      var plat = navigator.platform || "";
+      var os = null;
+      if (/Mac|iPhone|iPad/.test(plat) || /Macintosh/.test(ua)) os = "mac";
+      else if (/Win/.test(plat)) os = "win";
+      else if (/Linux/.test(plat) || /X11/.test(plat)) os = "linux";
+      if (!os) return;
+      var label = { mac: "macOS", win: "Windows", linux: "Linux" };
+      var note = document.getElementById("detected-note");
+      if (note) note.innerHTML = "Detected <strong style=\"color:var(--primary)\">" + label[os] + "</strong> &mdash; jump straight to the download below.";
+    } catch (e) {}
+  })();
+</script>
+<!-- GoatCounter: cookie-free page views and download clicks; no personal data. -->
+<script data-goatcounter="https://canya.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
