@@ -511,6 +511,87 @@
     opacity: 0.6;
   }
 
+  /* ---------- teams ---------- */
+
+  .section-lead {
+    margin: 14px auto 0;
+    max-width: 34rem;
+    color: var(--muted-foreground);
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .price-card {
+    margin: 28px auto 0;
+    max-width: 54rem;
+    border-radius: calc(var(--radius) * 1.4);
+    background: color-mix(in oklab, var(--primary) 7%, var(--card));
+    box-shadow: var(--shadow-card);
+    padding: 30px 34px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 28px;
+  }
+
+  .price-amount {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .price-amount span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--muted-foreground);
+  }
+
+  .price-card ul {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--muted-foreground);
+  }
+
+  .price-card li::before {
+    content: "\2713";
+    color: var(--primary);
+    margin-right: 8px;
+  }
+
+  .price-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 19rem;
+  }
+
+  .price-side p {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+  }
+
+  .price-side a {
+    color: var(--primary);
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 760px) {
+    .price-card {
+      padding: 24px 22px;
+    }
+    .price-side {
+      max-width: none;
+    }
+  }
+
   /* ---------- final cta ---------- */
 
   .final {
@@ -659,6 +740,7 @@
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#specification">Specification</a>
+      <a href="#teams">Teams</a>
       <a href="#downloads">Download</a>
       <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
       <a href="feedback.html">Feedback</a>
@@ -838,7 +920,7 @@
         </div>
         <div class="card">
           <h3>No network, on principle</h3>
-          <p>Nothing calls out while you work. Two narrow, documented exceptions: importing a project from a public <code>https://</code> link you paste, and checking this site for a signed update at startup (which you can turn off). Nothing else makes a request.</p>
+          <p>Nothing calls out while you work. Two narrow, documented exceptions: importing a project from a public <code>https://</code> link you paste, and checking this site for a signed update at startup (which you can turn off). <a href="#teams">Canya Teams</a> is opt-in and talks to its server only after you sign in.</p>
         </div>
         <div class="card">
           <h3>Native on every desktop</h3>
@@ -850,6 +932,44 @@
         <span>atomic local writes</span><span class="sep">&middot;</span>
         <span>fully usable offline</span><span class="sep">&middot;</span>
         <span>no account required</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="teams">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Canya Teams &middot; optional</p>
+        <h2>When the diagram needs other people.</h2>
+        <p class="section-lead">The app stays free and local. Canya Teams is an optional subscription you turn on from inside it, for the moments a file on one disk is not enough.</p>
+      </div>
+      <div class="grid-cards grid-cards-3">
+        <div class="card">
+          <h3>Share as a link</h3>
+          <p>Publish a project or one session as a read-only page anyone can open in a browser &mdash; sessions in order, notes, links between them. Unpublish whenever you like.</p>
+        </div>
+        <div class="card">
+          <h3>Sync between your devices</h3>
+          <p>Keep a project the same on your laptop and desktop. Changes merge in the background; the <code>.canya</code> file on each machine stays the real one.</p>
+        </div>
+        <div class="card">
+          <h3>Draw together, live</h3>
+          <p>Invite people to a shared project and edit the same canvas at the same time. Invitees only need a free account &mdash; your subscription covers them.</p>
+        </div>
+      </div>
+      <div class="price-card">
+        <div>
+          <p class="price-amount">&#8378;299.99 <span>/ month</span></p>
+          <ul>
+            <li>14-day free trial, no card needed</li>
+            <li>Encrypted on your device before anything is uploaded</li>
+            <li>Cancel anytime; runs to the end of the paid period</li>
+          </ul>
+        </div>
+        <div class="price-side">
+          <p>Sign in from <strong>Settings &rarr; Canya Teams</strong> in the app to start the trial, then subscribe there when you are ready.</p>
+          <p>Sold by our merchant of record, Lemon Squeezy; taxes are added at checkout where they apply. See the <a href="terms.html">terms</a> for cancelling and refunds.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -914,6 +1034,7 @@
     <nav>
       <a href="#features">Features</a>
       <a href="#specification">Specification</a>
+      <a href="#teams">Teams</a>
       <a href="https://github.com/burak-kayaa/canya-site/releases" target="_blank" rel="noopener">Releases</a>
       <a href="feedback.html">Feedback</a>
       <a href="credits.html">Credits</a>
