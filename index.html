@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Download Canya, a local-first desktop app for technical diagrams, for macOS, Windows, and Linux.">
+<meta name="description" content="Download Canya, a local-first desktop app for technical diagrams, for macOS, Windows, Linux and Android tablets (beta).">
 <meta property="og:title" content="Canya">
 <meta property="og:description" content="Still just a file on your disk. A local-first desktop app for system diagrams on a real Excalidraw canvas.">
 <meta property="og:image" content="https://canya.burkaya.com/assets/og-image.png">
@@ -621,9 +621,21 @@
 
   /* ---------- download panel ---------- */
 
+  .plat-beta {
+    margin-left: 6px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--primary) 14%, transparent);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
   .plat-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
   }
 
@@ -707,6 +719,9 @@
   }
 
   @media (max-width: 1040px) {
+    .plat-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .grid-cards-3 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -977,7 +992,7 @@
   <section id="downloads">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Rev 0.24.0</p>
+        <p class="eyebrow">Rev 0.25.0</p>
         <h2>Pick your platform.</h2>
       </div>
       <div class="plat-grid">
@@ -988,7 +1003,7 @@
           </div>
           <div class="plat-files">.dmg &mdash; universal<br>Apple Silicon &amp; Intel</div>
           <p class="plat-note">Signed and notarized with a Developer ID certificate.</p>
-          <a class="btn btn-accent" data-os="mac" data-goatcounter-click="download-mac" data-goatcounter-title="Download (mac)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.24.0/Canya_0.24.0_universal.dmg">Get the .dmg</a>
+          <a class="btn btn-accent" data-os="mac" data-goatcounter-click="download-mac" data-goatcounter-title="Download (mac)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya_0.25.0_universal.dmg">Get the .dmg</a>
         </div>
         <div class="plat">
           <div class="plat-name">
@@ -997,7 +1012,7 @@
           </div>
           <div class="plat-files">.msi / .exe &mdash; x64</div>
           <p class="plat-note warn">Unsigned build for now &mdash; SmartScreen will warn on first run.</p>
-          <a class="btn btn-accent" data-os="win" data-goatcounter-click="download-win" data-goatcounter-title="Download (win)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.24.0/Canya_0.24.0_x64-setup.exe">Get the installer</a>
+          <a class="btn btn-accent" data-os="win" data-goatcounter-click="download-win" data-goatcounter-title="Download (win)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya_0.25.0_x64-setup.exe">Get the installer</a>
         </div>
         <div class="plat">
           <div class="plat-name">
@@ -1005,12 +1020,21 @@
             Linux
           </div>
           <div class="plat-files">
-            Ubuntu, Debian, Mint &rarr; <a data-goatcounter-click="download-linux-deb" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.24.0/Canya_0.24.0_amd64.deb">.deb</a><br>
-            Fedora, openSUSE &rarr; <a data-goatcounter-click="download-linux-rpm" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.24.0/Canya-0.24.0-1.x86_64.rpm">.rpm</a><br>
-            Other distributions &rarr; <a data-goatcounter-click="download-linux-appimage" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.24.0/Canya_0.24.0_amd64.AppImage">.AppImage</a>
+            Ubuntu, Debian, Mint &rarr; <a data-goatcounter-click="download-linux-deb" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya_0.25.0_amd64.deb">.deb</a><br>
+            Fedora, openSUSE &rarr; <a data-goatcounter-click="download-linux-rpm" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya-0.25.0-1.x86_64.rpm">.rpm</a><br>
+            Other distributions &rarr; <a data-goatcounter-click="download-linux-appimage" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya_0.25.0_amd64.AppImage">.AppImage</a>
           </div>
           <p class="plat-note">The .deb and .rpm use your system&rsquo;s WebKit; the AppImage carries its own, for distributions without a package.</p>
-          <a class="btn btn-accent" data-os="linux" data-goatcounter-click="download-linux" data-goatcounter-title="Download (linux)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.24.0/Canya_0.24.0_amd64.deb">Get the .deb</a>
+          <a class="btn btn-accent" data-os="linux" data-goatcounter-click="download-linux" data-goatcounter-title="Download (linux)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya_0.25.0_amd64.deb">Get the .deb</a>
+        </div>
+        <div class="plat">
+          <div class="plat-name">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5a1.5 1.5 0 0 0 3 0V19h2v3.5a1.5 1.5 0 0 0 3 0V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8A1.5 1.5 0 0 0 2 9.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 3.5 8zm17 0a1.5 1.5 0 0 0-1.5 1.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 20.5 8zm-4.97-5.84 1.3-1.3a.5.5 0 0 0-.71-.71l-1.48 1.48A5.96 5.96 0 0 0 12 1c-.96 0-1.86.23-2.66.63L7.85.15a.5.5 0 0 0-.71.71l1.31 1.31A5.97 5.97 0 0 0 6 7h12a5.97 5.97 0 0 0-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+            Android <span class="plat-beta">beta</span>
+          </div>
+          <div class="plat-files">.apk &mdash; tablets<br>Android 7 or newer, arm64 &amp; armv7</div>
+          <p class="plat-note warn">Installed by hand: allow installs from your browser or file manager when asked. A new version comes as a new .apk.</p>
+          <a class="btn btn-accent" data-os="android" data-goatcounter-click="download-android" data-goatcounter-title="Download (android)" href="https://github.com/burak-kayaa/canya-site/releases/download/v0.25.0/Canya_0.25.0_android.apk">Get the .apk</a>
         </div>
       </div>
     </div>
@@ -1081,11 +1105,12 @@
       var ua = navigator.userAgent || "";
       var plat = navigator.platform || "";
       var os = null;
-      if (/Mac|iPhone|iPad/.test(plat) || /Macintosh/.test(ua)) os = "mac";
+      if (/Android/.test(ua)) os = "android";
+      else if (/Mac|iPhone|iPad/.test(plat) || /Macintosh/.test(ua)) os = "mac";
       else if (/Win/.test(plat)) os = "win";
       else if (/Linux/.test(plat) || /X11/.test(plat)) os = "linux";
       if (!os) return;
-      var label = { mac: "macOS", win: "Windows", linux: "Linux" };
+      var label = { mac: "macOS", win: "Windows", linux: "Linux", android: "Android" };
       var note = document.getElementById("detected-note");
       if (note) note.innerHTML = "Detected <strong style=\"color:var(--primary)\">" + label[os] + "</strong> &mdash; jump straight to the download below.";
     } catch (e) {}
